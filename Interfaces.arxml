@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="8a3b34c1-8910-4849-a77e-9da18052495c">
+      <SHORT-NAME>Interfaces</SHORT-NAME>
+      <ELEMENTS>
+        <CLIENT-SERVER-INTERFACE UUID="21e63e6f-5b00-4cf9-80ff-0394bd0fcab9">
+          <SHORT-NAME>IRegulatorPosition</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <OPERATION-PROTOTYPE UUID="90ded097-29c6-4007-9589-65f70d60e24a">
+              <SHORT-NAME>SetPosition</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-PROTOTYPE UUID="8144ca38-ee24-40fa-9aa9-703caaa0c603">
+                  <SHORT-NAME>Position</SHORT-NAME>
+                  <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-PROTOTYPE>
+              </ARGUMENTS>
+            </OPERATION-PROTOTYPE>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <CLIENT-SERVER-INTERFACE UUID="f5eafbaa-b98c-4db0-aec1-e0e25e846d3b">
+          <SHORT-NAME>IHeaterLevel</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <OPERATION-PROTOTYPE UUID="e3972f0f-025a-4c18-a3c1-90bdb1d17cdb">
+              <SHORT-NAME>SetHeat</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-PROTOTYPE UUID="d25f36a9-73e1-4712-b25f-09bf0e8b5786">
+                  <SHORT-NAME>LeftHeatLevel</SHORT-NAME>
+                  <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-PROTOTYPE>
+                <ARGUMENT-PROTOTYPE UUID="3eb15614-b6ef-45ea-a462-852a9b6f3638">
+                  <SHORT-NAME>RightHeatLevel</SHORT-NAME>
+                  <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-PROTOTYPE>
+              </ARGUMENTS>
+            </OPERATION-PROTOTYPE>
+          </OPERATIONS>
+        </CLIENT-SERVER-INTERFACE>
+        <SENDER-RECEIVER-INTERFACE UUID="a67d17c4-fedf-4ae0-b705-6aafef0791de">
+          <SHORT-NAME>ISensorIO</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <DATA-ELEMENT-PROTOTYPE UUID="2fe7f592-8d71-45d9-942a-caafb4120929">
+              <SHORT-NAME>SensorValue</SHORT-NAME>
+              <TYPE-TREF DEST="BOOLEAN-TYPE">/Datas/Boolean</TYPE-TREF>
+            </DATA-ELEMENT-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <SENDER-RECEIVER-INTERFACE UUID="178ef3a6-9647-4029-8ad3-8c84f639c652">
+          <SHORT-NAME>ISeatStatus</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <DATA-ELEMENT-PROTOTYPE UUID="0b449054-77fb-44cc-b2d5-edb9a6457dd6">
+              <SHORT-NAME>PassengerOnSeat</SHORT-NAME>
+              <TYPE-TREF DEST="BOOLEAN-TYPE">/Datas/Boolean</TYPE-TREF>
+            </DATA-ELEMENT-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <SENDER-RECEIVER-INTERFACE UUID="a6584636-da93-4862-800b-5d33c64e5162">
+          <SHORT-NAME>IHeaterIO</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <DATA-ELEMENT-PROTOTYPE UUID="506a9916-639c-460c-975a-79301b9df200">
+              <SHORT-NAME>HeaterValue</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+            </DATA-ELEMENT-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <SENDER-RECEIVER-INTERFACE UUID="6de04f1a-bc37-4555-be0a-867545377297">
+          <SHORT-NAME>IRegulatorIO</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <DATA-ELEMENT-PROTOTYPE UUID="7d02e2c3-f77b-4723-9d8b-89bf89db4a56">
+              <SHORT-NAME>RegulatorValue</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+            </DATA-ELEMENT-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>

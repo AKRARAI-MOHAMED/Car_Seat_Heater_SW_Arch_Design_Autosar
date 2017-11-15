@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <ADMIN-DATA>
+    <SDGS>
+      <SDG GID="Arccore::AutosarOptions">
+        <SD GID="GENDIR">/MySeat/config</SD>
+      </SDG>
+    </SDGS>
+  </ADMIN-DATA>
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="7b0bcdfc-e441-458d-ade4-10b41e752c90">
+      <SHORT-NAME>Datas</SHORT-NAME>
+      <ELEMENTS>
+        <BOOLEAN-TYPE UUID="c014fd99-cb7d-4ebd-a72f-936964c1435c">
+          <SHORT-NAME>Boolean</SHORT-NAME>
+        </BOOLEAN-TYPE>
+        <INTEGER-TYPE UUID="74933091-57d2-4c7b-8366-6efbe43e6212">
+          <SHORT-NAME>Int32</SHORT-NAME>
+          <SW-DATA-DEF-PROPS />
+          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1000</UPPER-LIMIT>
+        </INTEGER-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>

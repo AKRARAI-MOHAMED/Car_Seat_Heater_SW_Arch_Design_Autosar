@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="a5b7491d-954c-42e0-8198-282e511012c5">
+      <SHORT-NAME>SeatSensor</SHORT-NAME>
+      <ELEMENTS>
+        <SWC-IMPLEMENTATION UUID="8e550a86-f6d9-4fab-acfb-cbb2cc03ad2b">
+          <SHORT-NAME>SeatSensorImplementation</SHORT-NAME>
+          <BEHAVIOR-REF DEST="INTERNAL-BEHAVIOR">/SeatSensor/SeatSensorBehavioral</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <INTERNAL-BEHAVIOR UUID="4c222146-d19e-40cf-bed2-1c101ef679f7">
+          <SHORT-NAME>SeatSensorBehavioral</SHORT-NAME>
+          <COMPONENT-REF DEST="APPLICATION-SOFTWARE-COMPONENT-TYPE">/SeatSensor/SeatSensing</COMPONENT-REF>
+          <EVENTS>
+            <TIMING-EVENT UUID="e44a6419-ce84-42eb-bf59-d7e9a7e6549b">
+              <SHORT-NAME>timingEventSeatSensor</SHORT-NAME>
+              <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SeatSensor/SeatSensorBehavioral/SeatSensorMain</START-ON-EVENT-REF>
+              <PERIOD>0.0</PERIOD>
+            </TIMING-EVENT>
+          </EVENTS>
+          <RUNNABLES>
+            <RUNNABLE-ENTITY UUID="cbdd1b00-ab91-4ce9-86fe-c48489934b6e">
+              <SHORT-NAME>SeatSensorMain</SHORT-NAME>
+              <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+              <DATA-READ-ACCESSS>
+                <DATA-READ-ACCESS UUID="97b277db-870f-463e-9688-b788b5056c85">
+                  <SHORT-NAME>dataReadAccess_1</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SeatSensor/SeatSensing/SensorIO</R-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/ISensorIO/SensorValue</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-READ-ACCESS>
+              </DATA-READ-ACCESSS>
+              <DATA-WRITE-ACCESSS>
+                <DATA-WRITE-ACCESS UUID="3c814446-ad1e-4ccb-a61e-3fe6aa19ac1d">
+                  <SHORT-NAME>dataWriteAccess_1</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <P-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SeatSensor/SeatSensing/SeatStatus</P-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/ISeatStatus/PassengerOnSeat</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-WRITE-ACCESS>
+              </DATA-WRITE-ACCESSS>
+              <SYMBOL>runnable_1_symbol</SYMBOL>
+            </RUNNABLE-ENTITY>
+          </RUNNABLES>
+          <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+        </INTERNAL-BEHAVIOR>
+        <APPLICATION-SOFTWARE-COMPONENT-TYPE UUID="69a8d700-7ba4-4578-aa39-c3b787b1fd23">
+          <SHORT-NAME>SeatSensing</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="a5a0d29a-ed58-4da5-8190-8fdc5a6916d2">
+              <SHORT-NAME>SeatStatus</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/ISeatStatus</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="926a13d3-cd4d-40db-973e-d74986bb1fb0">
+              <SHORT-NAME>SensorIO</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/ISensorIO</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+        </APPLICATION-SOFTWARE-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>

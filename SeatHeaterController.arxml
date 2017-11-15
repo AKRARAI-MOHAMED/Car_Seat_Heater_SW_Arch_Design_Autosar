@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <ADMIN-DATA>
+    <SDGS>
+      <SDG GID="Arccore::AutosarOptions">
+        <SD GID="GENDIR">/MySeat/config</SD>
+      </SDG>
+    </SDGS>
+  </ADMIN-DATA>
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="0ecbbabb-2962-4be5-b22d-51557df124e8">
+      <SHORT-NAME>SeatHeatingController</SHORT-NAME>
+      <ELEMENTS>
+        <SWC-IMPLEMENTATION UUID="af5bf820-72c1-42c0-99c0-e7551d82f8e6">
+          <SHORT-NAME>SeatHeatingControllerImplementation</SHORT-NAME>
+          <BEHAVIOR-REF DEST="INTERNAL-BEHAVIOR">/SeatHeatingController/SeatHeatingControllerbehavioral</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <INTERNAL-BEHAVIOR UUID="94894b29-f9b3-4105-9013-b3cc317d36ed">
+          <SHORT-NAME>SeatHeatingControllerbehavioral</SHORT-NAME>
+          <COMPONENT-REF DEST="APPLICATION-SOFTWARE-COMPONENT-TYPE">/SeatHeatingController/SeatHeating</COMPONENT-REF>
+          <EVENTS>
+            <OPERATION-INVOKED-EVENT UUID="1d151bf7-5c6e-4f3a-950d-1aef2f29c15f">
+              <SHORT-NAME>opInvokedEventSeatHeatingController</SHORT-NAME>
+              <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SeatHeatingController/SeatHeatingControllerbehavioral/SeatHeatingControllerSetPosition</START-ON-EVENT-REF>
+              <OPERATION-IREF>
+                <P-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SeatHeatingController/SeatHeating/RegulatorPosition</P-PORT-PROTOTYPE-REF>
+                <OPERATION-PROTOTYPE-REF DEST="OPERATION-PROTOTYPE">/Interfaces/IRegulatorPosition/SetPosition</OPERATION-PROTOTYPE-REF>
+              </OPERATION-IREF>
+            </OPERATION-INVOKED-EVENT>
+            <TIMING-EVENT UUID="68d831e3-531a-4c9c-a356-e4b3f6a1e861">
+              <SHORT-NAME>timingEventSeatHeatingController</SHORT-NAME>
+              <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SeatHeatingController/SeatHeatingControllerbehavioral/SeatHeatingControllerMain</START-ON-EVENT-REF>
+              <PERIOD>0.0</PERIOD>
+            </TIMING-EVENT>
+          </EVENTS>
+          <INTER-RUNNABLE-VARIABLES>
+            <INTER-RUNNABLE-VARIABLE UUID="3993aa5d-5c57-42c6-a67c-68144ec04770">
+              <SHORT-NAME>InetrRunVar</SHORT-NAME>
+              <TYPE-TREF DEST="INTEGER-TYPE">/Datas/Int32</TYPE-TREF>
+              <COMMUNICATION-APPROACH>IMPLICIT</COMMUNICATION-APPROACH>
+            </INTER-RUNNABLE-VARIABLE>
+          </INTER-RUNNABLE-VARIABLES>
+          <RUNNABLES>
+            <RUNNABLE-ENTITY UUID="07cf2c01-96e8-44d7-9d20-1d938643747c">
+              <SHORT-NAME>SeatHeatingControllerMain</SHORT-NAME>
+              <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+              <DATA-READ-ACCESSS>
+                <DATA-READ-ACCESS UUID="2f4616c7-a187-4cce-b1d5-d503015ffd56">
+                  <SHORT-NAME>dataReadAccess_1</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SeatHeatingController/SeatHeating/LeftSeatStatus</R-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/ISeatStatus/PassengerOnSeat</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-READ-ACCESS>
+                <DATA-READ-ACCESS UUID="5f2b1a09-cdcf-4516-93ec-f3052dca856c">
+                  <SHORT-NAME>dataReadAccess_2</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SeatHeatingController/SeatHeating/RightSeatStatus</R-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/ISeatStatus/PassengerOnSeat</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-READ-ACCESS>
+              </DATA-READ-ACCESSS>
+              <READ-VARIABLE-REFS>
+                <READ-VARIABLE-REF DEST="INTER-RUNNABLE-VARIABLE">/SeatHeatingController/SeatHeatingControllerbehavioral/InetrRunVar</READ-VARIABLE-REF>
+              </READ-VARIABLE-REFS>
+              <SERVER-CALL-POINTS>
+                <SYNCHRONOUS-SERVER-CALL-POINT UUID="dfa8238e-9cc1-472c-89df-082053b4d815">
+                  <SHORT-NAME>syncCallPoint_1</SHORT-NAME>
+                  <OPERATION-IREFS>
+                    <OPERATION-IREF>
+                      <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SeatHeatingController/SeatHeating/HeaterLevels</R-PORT-PROTOTYPE-REF>
+                      <OPERATION-PROTOTYPE-REF DEST="OPERATION-PROTOTYPE">/Interfaces/IHeaterLevel/SetHeat</OPERATION-PROTOTYPE-REF>
+                    </OPERATION-IREF>
+                  </OPERATION-IREFS>
+                </SYNCHRONOUS-SERVER-CALL-POINT>
+              </SERVER-CALL-POINTS>
+              <SYMBOL>SeatHeatingControllerMain</SYMBOL>
+            </RUNNABLE-ENTITY>
+            <RUNNABLE-ENTITY UUID="4438f705-24d5-43d7-bd8a-b7c1ad030a1d">
+              <SHORT-NAME>SeatHeatingControllerSetPosition</SHORT-NAME>
+              <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+              <SYMBOL>SeatHeatingControllerSetPosition</SYMBOL>
+              <WRITTEN-VARIABLE-REFS>
+                <WRITTEN-VARIABLE-REF DEST="INTER-RUNNABLE-VARIABLE">/SeatHeatingController/SeatHeatingControllerbehavioral/InetrRunVar</WRITTEN-VARIABLE-REF>
+              </WRITTEN-VARIABLE-REFS>
+            </RUNNABLE-ENTITY>
+          </RUNNABLES>
+          <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+        </INTERNAL-BEHAVIOR>
+        <APPLICATION-SOFTWARE-COMPONENT-TYPE UUID="7a26a247-3244-4b23-8bce-dbb8f4315150">
+          <SHORT-NAME>SeatHeating</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="8a7d6ccb-b5f9-447e-b29d-75bad52ad2ad">
+              <SHORT-NAME>LeftSeatStatus</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/ISeatStatus</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="c232b70c-c969-417d-9869-354193abf190">
+              <SHORT-NAME>RightSeatStatus</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/ISeatStatus</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="e74efda4-d423-4cbe-ad42-73f513c6c370">
+              <SHORT-NAME>RegulatorPosition</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/IRegulatorPosition</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="24928e51-09d3-437c-acbe-e5479eb58ba7">
+              <SHORT-NAME>HeaterLevels</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/IHeaterLevel</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+        </APPLICATION-SOFTWARE-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>

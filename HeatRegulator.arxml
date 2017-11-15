@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="e04cc186-cb83-4537-8e57-59fab761597e">
+      <SHORT-NAME>HeatRegulator</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SOFTWARE-COMPONENT-TYPE UUID="f8bf560d-5fbe-410e-88d0-872fea796157">
+          <SHORT-NAME>HeatRegulatorApp</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE UUID="d1208751-3a1c-4e1a-bd21-292811a04f10">
+              <SHORT-NAME>Position</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/IRegulatorPosition</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="d7f16ea8-674b-42ab-9b60-34e3a0c04ca0">
+              <SHORT-NAME>RegulatorIO</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/IRegulatorIO</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+        </APPLICATION-SOFTWARE-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION UUID="8c491223-df20-44b0-aaa7-13eab1fed976">
+          <SHORT-NAME>HeatRegulatorImplementation</SHORT-NAME>
+          <BEHAVIOR-REF DEST="INTERNAL-BEHAVIOR">/HeatRegulator/HeatRegulatorBehavior</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <INTERNAL-BEHAVIOR UUID="5bbf7b24-0e41-46d0-b8a8-c7ab8330d70f">
+          <SHORT-NAME>HeatRegulatorBehavior</SHORT-NAME>
+          <COMPONENT-REF DEST="APPLICATION-SOFTWARE-COMPONENT-TYPE">/HeatRegulator/HeatRegulatorApp</COMPONENT-REF>
+          <EVENTS>
+            <TIMING-EVENT UUID="92843e2b-1a75-4638-9b39-d4f9f36670bd">
+              <SHORT-NAME>heatRegulatorTimingEvent</SHORT-NAME>
+              <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HeatRegulator/HeatRegulatorBehavior/HeatRegulatorMain</START-ON-EVENT-REF>
+              <PERIOD>0.0</PERIOD>
+            </TIMING-EVENT>
+          </EVENTS>
+          <RUNNABLES>
+            <RUNNABLE-ENTITY UUID="949d6df7-4120-4d62-bda6-c9aa6ad70278">
+              <SHORT-NAME>HeatRegulatorMain</SHORT-NAME>
+              <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+              <DATA-READ-ACCESSS>
+                <DATA-READ-ACCESS UUID="ba25b608-6bef-4e2f-bfb7-5457e065f400">
+                  <SHORT-NAME>dataReadAccess_1</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HeatRegulator/HeatRegulatorApp/RegulatorIO</R-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/IRegulatorIO/RegulatorValue</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-READ-ACCESS>
+              </DATA-READ-ACCESSS>
+              <SERVER-CALL-POINTS>
+                <SYNCHRONOUS-SERVER-CALL-POINT UUID="9d589eea-0c63-4ae5-aecb-2a9704437aa9">
+                  <SHORT-NAME>syncCallPoint_toSetPosition</SHORT-NAME>
+                  <OPERATION-IREFS>
+                    <OPERATION-IREF>
+                      <R-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HeatRegulator/HeatRegulatorApp/Position</R-PORT-PROTOTYPE-REF>
+                      <OPERATION-PROTOTYPE-REF DEST="OPERATION-PROTOTYPE">/Interfaces/IRegulatorPosition/SetPosition</OPERATION-PROTOTYPE-REF>
+                    </OPERATION-IREF>
+                  </OPERATION-IREFS>
+                </SYNCHRONOUS-SERVER-CALL-POINT>
+              </SERVER-CALL-POINTS>
+              <SYMBOL>HeatRegulatorMain</SYMBOL>
+            </RUNNABLE-ENTITY>
+          </RUNNABLES>
+          <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+        </INTERNAL-BEHAVIOR>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>

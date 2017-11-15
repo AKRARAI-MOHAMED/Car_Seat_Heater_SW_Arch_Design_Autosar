@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="b0929311-1ca0-4746-8c67-f413eabdf69f">
+      <SHORT-NAME>SeatHeater</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SOFTWARE-COMPONENT-TYPE UUID="3d81d2a9-79f7-489f-8f69-c6bfdb81caba">
+          <SHORT-NAME>SeatHeaterapp</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="e6983680-b9f8-4a75-b24e-aba3c2b15f01">
+              <SHORT-NAME>RightSeatHeaterIO</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/IHeaterIO</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="48439560-30d9-4fcc-b02a-44fe5c12f18f">
+              <SHORT-NAME>Levels</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Interfaces/IHeaterLevel</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="f346140c-7d40-468d-a52c-9d962c05c164">
+              <SHORT-NAME>LeftSeatHeaterIO</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Interfaces/IHeaterIO</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+        </APPLICATION-SOFTWARE-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION UUID="bb8c09b8-a3ee-492b-96c3-4d27be247ddf">
+          <SHORT-NAME>SeatHeaterImplementation</SHORT-NAME>
+          <BEHAVIOR-REF DEST="INTERNAL-BEHAVIOR">/SeatHeater/SeatHeaterBehavior</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+        <INTERNAL-BEHAVIOR UUID="5a67783c-fe3b-4068-bb5e-3064d0ce97c3">
+          <SHORT-NAME>SeatHeaterBehavior</SHORT-NAME>
+          <COMPONENT-REF DEST="APPLICATION-SOFTWARE-COMPONENT-TYPE">/SeatHeater/SeatHeaterapp</COMPONENT-REF>
+          <EVENTS>
+            <OPERATION-INVOKED-EVENT UUID="d27ace93-2ae1-4220-ba47-ac8b40821a33">
+              <SHORT-NAME>opInvokedEventSeatHeater</SHORT-NAME>
+              <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SeatHeater/SeatHeaterBehavior/SeatHeaterMain</START-ON-EVENT-REF>
+              <OPERATION-IREF>
+                <P-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SeatHeater/SeatHeaterapp/Levels</P-PORT-PROTOTYPE-REF>
+                <OPERATION-PROTOTYPE-REF DEST="OPERATION-PROTOTYPE">/Interfaces/IHeaterLevel/SetHeat</OPERATION-PROTOTYPE-REF>
+              </OPERATION-IREF>
+            </OPERATION-INVOKED-EVENT>
+          </EVENTS>
+          <RUNNABLES>
+            <RUNNABLE-ENTITY UUID="2ca4fa71-0e06-48d7-a0bb-d1950cb779b4">
+              <SHORT-NAME>SeatHeaterMain</SHORT-NAME>
+              <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+              <DATA-WRITE-ACCESSS>
+                <DATA-WRITE-ACCESS UUID="b46db4b0-4c8a-4d58-9d08-9208cf71d619">
+                  <SHORT-NAME>dataWriteAccess_1</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <P-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SeatHeater/SeatHeaterapp/LeftSeatHeaterIO</P-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/IHeaterIO/HeaterValue</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-WRITE-ACCESS>
+                <DATA-WRITE-ACCESS UUID="f78c51ca-64fa-402d-97b6-00074a5d5ac8">
+                  <SHORT-NAME>dataWriteAccess_2</SHORT-NAME>
+                  <DATA-ELEMENT-IREF>
+                    <P-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SeatHeater/SeatHeaterapp/RightSeatHeaterIO</P-PORT-PROTOTYPE-REF>
+                    <DATA-ELEMENT-PROTOTYPE-REF DEST="DATA-ELEMENT-PROTOTYPE">/Interfaces/IHeaterIO/HeaterValue</DATA-ELEMENT-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                </DATA-WRITE-ACCESS>
+              </DATA-WRITE-ACCESSS>
+              <SYMBOL>SeatHeaterMain</SYMBOL>
+            </RUNNABLE-ENTITY>
+          </RUNNABLES>
+          <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+        </INTERNAL-BEHAVIOR>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
